@@ -6,8 +6,6 @@ from pydantic import EmailStr
 
 
 
-
-
 from services.auth import auth_service
 
 conf = ConnectionConfig(
@@ -23,7 +21,6 @@ conf = ConnectionConfig(
     VALIDATE_CERTS=True,
     TEMPLATE_FOLDER=Path(__file__).parent / 'templates',
 )
-
 
 async def send_email(email: EmailStr, username: str, host: str):
     try:
