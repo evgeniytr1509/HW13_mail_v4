@@ -9,9 +9,9 @@ from pydantic import EmailStr
 from services.auth import auth_service
 
 conf = ConnectionConfig(
-    MAIL_USERNAME="fatsapiuser@meta.ua",
-    MAIL_PASSWORD="",
-    MAIL_FROM="fatsapiuser@meta.ua",
+    MAIL_USERNAME="evgeniytr@meta.ua",
+    MAIL_PASSWORD="567234",
+    MAIL_FROM="evgeniytr@meta.ua",
     MAIL_PORT=465,
     MAIL_SERVER="smtp.meta.ua",
     MAIL_FROM_NAME="Desired Name",

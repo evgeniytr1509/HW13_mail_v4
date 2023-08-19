@@ -8,7 +8,6 @@ from starlette.middleware.cors import CORSMiddleware
 from routes import todos, auth
 
 
-
 app = FastAPI()
 
 app.add_middleware(

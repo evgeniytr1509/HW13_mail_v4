@@ -3,6 +3,7 @@ from typing import List
 from fastapi import APIRouter, HTTPException, Depends, status, Security, Request, BackgroundTasks, Response
 from fastapi.security import OAuth2PasswordRequestForm, HTTPAuthorizationCredentials, HTTPBearer
 from fastapi.responses import FileResponse
+from jose import JWTError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from database.db import get_db
@@ -76,3 +77,13 @@ async def confirmed_email(token: str, db: AsyncSession = Depends(get_db)):
         return {"message": "Your email is already confirmed"}
     await repository_users.confirmed_email(email, db)
     return {"message": "Email confirmed"}
+
+
+async def get_email_from_token(self, token: str):
+    try:
+        payload = jwt.decode(token, self.SECRET_KEY, algorithms=[self.ALGORITHM])
+        email = payload["sub"]
+        return email
+    except JWTError as e:
+        print(e)
+        raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY,detail="Invalid token for email verification")
